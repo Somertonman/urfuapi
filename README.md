@@ -8,6 +8,7 @@ based on https://huggingface.co/bert-base-uncased
 ## API description
 
 Service works with POST method on http://20.123.12.234:8000/root_get_suggestions
+FastAPI docs - http://20.123.12.234:8000/docs
 
 ### Example
 
@@ -45,7 +46,6 @@ response for the given example:
 ### Response
 
 Service responds with a a JSON list of dictionaries sorted by *score*
-
 
 keys|score|sequence|token|token_str|
 |-|-|-|-|-|
