@@ -15,6 +15,12 @@ Service works with POST method on http://20.123.12.234:8000/root_get_suggestions
   "sentence": "string"
 }
 
+### Response
+
+Service responds with a a JSON list of dictionaries
+|score|sequence|token|token_str|
+|score of the given word
+
 ## Notebook for testing
 
 https://colab.research.google.com/drive/1NvD5Nv-UJCybx4JYYTfJJCweNYaz5v_f?usp=sharing
