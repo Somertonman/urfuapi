@@ -19,7 +19,8 @@ Service works with POST method on http://20.123.12.234:8000/root_get_suggestions
 
 Service responds with a a JSON list of dictionaries
 |score|sequence|token|token_str|
-|score of the given word
+|_____|________|_____|_________|
+|score of the given word|||||
 
 ## Notebook for testing
 
