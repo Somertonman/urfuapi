@@ -1,4 +1,5 @@
 fastapi
+tensorflow-cpu
 uvicorn[standard]
 fastapi-socketio
 uvicorn
