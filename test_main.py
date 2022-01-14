@@ -4,20 +4,20 @@ from main import app
 client = TestClient(app)
 
 def test_no_search_token_in_the_string():
-    response = client.post("/get_suggestions/",
+    response = client.post("/get_suggestions",
         json={"sentence":"Meme"}
     )
-    assert response.status_code == 307
+    assert response.status_code == 200
 
 def test_more_than_one_tokens_in_the_string():
-    response = client.post("/get_suggestions/",
+    response = client.post("/get_suggestions",
         json={"sentence":"Me * me *"}
     )
-    assert response.status_code == 307
+    assert response.status_code == 200
 
 def test_correct_string():
     
-    response = client.post("/get_suggestions/",
+    response = client.post("/get_suggestions",
         json={"sentence":"* me"}
     )
     assert response.status_code == 200
