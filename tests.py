@@ -1,3 +1,5 @@
+from main import get_predictions
+
 def no_search_token_in_the_string():
     assert get_predictions("Meme")['status'] == 'error'
 
