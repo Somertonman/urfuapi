@@ -22,4 +22,4 @@ def test_correct_string():
     )
     assert response.status_code == 200
     
-    assert type(response.json())[0]['token_str']) == str
+    assert type(response.json()[0]['token_str']) == str
