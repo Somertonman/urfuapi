@@ -10,7 +10,7 @@ based on https://huggingface.co/bert-base-uncased
 Service works with POST method on http://20.123.12.234:8000/root_get_suggestions
 FastAPI docs - http://20.123.12.234:8000/docs
 
-### Optional arguments
+### JSON arguments
 
 Parameter|Description|Default|Range|Mandatory|
 |-|-|-|-|-|
@@ -19,9 +19,6 @@ min_score| Minimal score of returned tokens| 0 | [0,1) | no |
 n_of_results| Number of returned tokens| 5 | [0,5] |no |
 words_only| Returns detailed metadata| False| True/False| no
 
-
-* min_score of the tokens to be return (default 0)
-* n_of_results
 
 ### Example
 
