@@ -18,7 +18,7 @@ def test_more_than_one_tokens_in_the_string():
 def test_correct_string():
     
     response = client.post("/get_suggestions/",
-        json={"sentence":"* me""}
+        json={"sentence":"* me"}
     )
     assert response.status_code == 200
     
