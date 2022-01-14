@@ -12,9 +12,10 @@ FastAPI docs - http://20.123.12.234:8000/docs
 
 ### Optional arguments
 
-Parameter|Description|Default|Is optional|
-|-|-|-|-|
-min_score| Minimal score of the tokens to be returned| 0 | *|
+Parameter|Description|Default|Range|Mandatory|
+|-|-|-|-|-|
+min_score| Minimal score of returned tokens| 0 | [0,5] | no |
+n_of_results| Number of returned tokens| 5 | [0,5] |no |
 
 * min_score of the tokens to be return (default 0)
 * n_of_results
