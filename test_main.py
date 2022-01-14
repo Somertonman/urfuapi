@@ -5,7 +5,7 @@ client = TestClient(app)
 
 def test_no_search_token_in_the_string():
     response = client.post("/get_suggestions/",
-        json={"Meme"}
+        json={"sentence":"Meme"}
     )
     assert response.status_code == 200
     assert response['status'] == 'error'
