@@ -57,6 +57,26 @@ response for the given example:
   'token_str': 'was'}]
   ```
 
+```
+import requests
+BASE_URL = "http://20.123.12.234:8000/get_suggestions"
+query = "I * URFU."
+response = requests.post(BASE_URL, json={'sentence':query}, 'words_only':False, "min_score": 0.2).json()
+```
+response
+```
+{'data': [{'score': 0.4385973811149597,
+   'sequence': 'i have to go.',
+   'token': 2031,
+   'token_str': 'have'},
+  {'score': 0.311788409948349,
+   'sequence': 'i had to go.',
+   'token': 2018,
+   'token_str': 'had'}],
+ 'status': 'ok'}
+```
+
+
 ### Response
 
 Service responds with a a JSON list of dictionaries sorted by *score*
