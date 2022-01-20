@@ -39,3 +39,11 @@ def test_correct_error_n_of_results():
     assert response.status_code == 200
     assert len (response.json()['data']) == 3   
    
+def test_correct_error_n_of_results_and_words_only():
+    
+    response = client.post("/get_suggestions",
+        json={"sentence":"I * dog", "n_of_results": 3, "words_only": True}
+    )
+    assert response.status_code == 200
+    assert len (response.json()['data']) == 3 
+    assert type(response.json()['data'][0]) == str
