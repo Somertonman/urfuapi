@@ -1,6 +1,6 @@
-# urfuapi
-
 [![Python application](https://github.com/Somertonman/urfuapi/actions/workflows/python-app.yml/badge.svg)](https://github.com/Somertonman/urfuapi/actions/workflows/python-app.yml)
+
+# urfuapi
 
 Pretrained model on English language using a masked language modeling (MLM) objective. It was introduced in this paper and first released in this repository. This model is uncased: it does not make a difference between english and English.
 
