@@ -44,9 +44,18 @@ async def root(request: Sentence):
     try:
         q = q.replace("*", "[MASK]")
         result = unmasker(q)[:n_of_results]
+        result = [x for x in result if x['score'] >= min_score]
+
+        if len(result) == 0:
+          return {"status": "error", "details": 'No results to return. Probably min_score is too high.'}
+
+
         if words_only:
-          return {"status": "ok", "data": [x['token_str'] for x in result]}
+          result = {"status": "ok", "data": [x['token_str'] for x in result]}
         else:
-          return {"status": "ok", "data": result}
+          result = {"status": "ok", "data": result}
+
+        return result
+
     except Exception as e:
         return {"status": "error", "details": e.args}
