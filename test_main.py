@@ -27,7 +27,7 @@ def test_correct_error_min_score():
     
     response = client.post("/get_suggestions",
         json={"sentence":"I * horses", "min_score": 0.7})
-    )
+
     assert response.status_code == 200
     assert response.json()['details'] == 'No results to return. Probably min_score is too high.'
     
