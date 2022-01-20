@@ -47,3 +47,21 @@ def test_correct_error_n_of_results_and_words_only():
     assert response.status_code == 200
     assert len (response.json()['data']) == 3 
     assert type(response.json()['data'][0]) == str
+
+    
+def test_correct_error_n_of_results_greater_than_five():
+    
+    response = client.post("/get_suggestions",
+        json={"sentence":"I * dog", "n_of_results": 10})
+    
+    assert response.status_code == 200
+    assert response.json()['details'] == 'n_of_results should be a real number in [1,5]'
+    
+    
+def test_correct_error_min_score_wrong_val():
+    
+    response = client.post("/get_suggestions",
+        json={"sentence":"I * dog", "min_score": 10})
+    
+    assert response.status_code == 200
+    assert response.json()['details'] == 'min_score should be a real number in [0,1)'
