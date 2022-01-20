@@ -26,6 +26,8 @@ words_only| Returns detailed metadata| False| True/False| no
 
 ### Example
 
+#### Default vals
+
 ```
 import requests
 BASE_URL = "http://20.123.12.234:8000/get_suggestions"
@@ -35,27 +37,30 @@ response = requests.post(BASE_URL, json={'sentence':query}).json()
 response for the given example:
 
 ```
-[{'score': 0.3510996401309967,
-  'sequence': 'i am urfu.',
-  'token': 2572,
-  'token_str': 'am'},
- {'score': 0.04048578813672066,
-  'sequence': 'i need urfu.',
-  'token': 2342,
-  'token_str': 'need'},
- {'score': 0.037849340587854385,
-  'sequence': 'i want urfu.',
-  'token': 2215,
-  'token_str': 'want'},
- {'score': 0.036747705191373825,
-  'sequence': 'i love urfu.',
-  'token': 2293,
-  'token_str': 'love'},
- {'score': 0.03464050963521004,
-  'sequence': 'i was urfu.',
-  'token': 2001,
-  'token_str': 'was'}]
+{'data': [{'score': 0.3510996401309967,
+   'sequence': 'i am urfu.',
+   'token': 2572,
+   'token_str': 'am'},
+  {'score': 0.04048578813672066,
+   'sequence': 'i need urfu.',
+   'token': 2342,
+   'token_str': 'need'},
+  {'score': 0.037849340587854385,
+   'sequence': 'i want urfu.',
+   'token': 2215,
+   'token_str': 'want'},
+  {'score': 0.036747705191373825,
+   'sequence': 'i love urfu.',
+   'token': 2293,
+   'token_str': 'love'},
+  {'score': 0.03464050963521004,
+   'sequence': 'i was urfu.',
+   'token': 2001,
+   'token_str': 'was'}],
+ 'status': 'ok'}
   ```
+
+#### Optional vals
 
 ```
 import requests
@@ -75,6 +80,20 @@ response
    'token_str': 'had'}],
  'status': 'ok'}
 ```
+
+#### Malformed request
+
+```
+import requests
+BASE_URL = "http://20.123.12.234:8000/get_suggestions"
+query = "I * URFU."
+response = requests.post(BASE_URL, json={'sentence':query}, 'words_only':False, "min_score": 10).json()
+```
+response
+```
+{'details': 'min_score should be a real number in [0,1)', 'status': 'error'}
+```
+
 
 
 ### Response
