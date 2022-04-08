@@ -12,7 +12,7 @@ class Sentence(BaseModel):
     words_only: Optional[bool] = False
 
 
-unmasker = pipeline('fill-mask', model='bert-base-uncased')
+unmasker = pipeline("fill-mask", model="bert-base-uncased")
 
 app = FastAPI()
 
@@ -30,13 +30,15 @@ async def root(request: Sentence):
     if min_score < 0 or min_score > 1:
         return {
             "status": "error",
-            "details": "min_score should be a real number in [0,1)"}
+            "details": "min_score should be a real number in [0,1)",
+        }
 
     # n_of_results check
     if n_of_results < 1 or n_of_results > 5:
         return {
             "status": "error",
-            "details": "n_of_results should be a real number in [1,5]"}
+            "details": "n_of_results should be a real number in [1,5]",
+        }
 
     # count of masked symbols check
     if q.count("*") == 0:
@@ -44,20 +46,22 @@ async def root(request: Sentence):
     elif q.count("*") > 1:
         return {
             "status": "error",
-            "details": f"Masked symbol * found {q.count('*')} times"}
+            "details": f"Masked symbol * found {q.count('*')} times",
+        }
 
     try:
         q = q.replace("*", "[MASK]")
         result = unmasker(q)[:n_of_results]
-        result = [x for x in result if x['score'] >= min_score]
+        result = [x for x in result if x["score"] >= min_score]
 
         if len(result) == 0:
             return {
                 "status": "error",
-                "details": 'No results to return. Probably min_score is too high.'}
+                "details": "No results to return. Probably min_score is too high.",
+            }
 
         if words_only:
-            result = {"status": "ok", "data": [x['token_str'] for x in result]}
+            result = {"status": "ok", "data": [x["token_str"] for x in result]}
         else:
             result = {"status": "ok", "data": result}
 
