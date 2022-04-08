@@ -28,17 +28,23 @@ async def root(request: Sentence):
 
     # min_score check
     if min_score < 0 or min_score > 1:
-        return {"status": "error", "details": "min_score should be a real number in [0,1)"}
+        return {
+            "status": "error",
+            "details": "min_score should be a real number in [0,1)"}
 
     # n_of_results check
     if n_of_results < 1 or n_of_results > 5:
-        return {"status": "error", "details": "n_of_results should be a real number in [1,5]"}
+        return {
+            "status": "error",
+            "details": "n_of_results should be a real number in [1,5]"}
 
     # count of masked symbols check
     if q.count("*") == 0:
         return {"status": "error", "details": "Masked symbol * not found"}
     elif q.count("*") > 1:
-        return {"status": "error", "details": f"Masked symbol * found {q.count('*')} times"}
+        return {
+            "status": "error",
+            "details": f"Masked symbol * found {q.count('*')} times"}
 
     try:
         q = q.replace("*", "[MASK]")
@@ -46,7 +52,9 @@ async def root(request: Sentence):
         result = [x for x in result if x['score'] >= min_score]
 
         if len(result) == 0:
-            return {"status": "error", "details": 'No results to return. Probably min_score is too high.'}
+            return {
+                "status": "error",
+                "details": 'No results to return. Probably min_score is too high.'}
 
         if words_only:
             result = {"status": "ok", "data": [x['token_str'] for x in result]}
